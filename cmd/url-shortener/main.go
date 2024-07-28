@@ -49,16 +49,14 @@ func main() {
 
 	router.Route("/url", func(r chi.Router) {
 		r.Use(middleware.BasicAuth("url-shortener", map[string]string{
-			cfg.HttpServer.User: cfg.HttpServer.Password, 
+			cfg.HttpServer.User: cfg.HttpServer.Password,
 		}))
 
 		r.Post("/", save.New(log, storage))
 		r.Delete("/{alias}", remove.New(log, storage))
 	})
 
-	
 	router.Get("/{alias}", redirect.New(log, storage))
-	
 
 	log.Info("starting server", slog.String("address", cfg.Address))
 
@@ -75,8 +73,6 @@ func main() {
 	}
 
 	log.Error("server failed")
-
-	// TODO: run server
 }
 
 func setupLogger(env string) *slog.Logger {

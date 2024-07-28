@@ -15,7 +15,7 @@ type Config struct {
 }
 
 type HttpServer struct {
-	Address      string        `yaml:"localhost:8080" env-default:"localhost:8080"`
+	Address      string        `yaml:"localhost:8082" env-default:"localhost:8082"`
 	TimeOut      time.Duration `yaml:"timeout" env-default:"4s"`
 	IddleTimeout time.Duration `yaml:"idle_timeout" env-default:"60s"`
 	User         string        `yaml:"user" env-required:"true"`
